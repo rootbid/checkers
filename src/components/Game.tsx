@@ -108,7 +108,7 @@ export default function Game() {
                     <div 
                       className={`
                         w-[70%] h-[70%] rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,0.3),_0_4px_8px_rgba(0,0,0,0.2)]
-                        relative transition-transform duration-150 ease-out z-20 will-change-transform ${currentTurn === playerRole && piece.player === playerRole && !winner ? 'motion-safe:hover:scale-[1.03] cursor-pointer' : ''}
+                        relative transition-transform duration-150 ease-out z-20 ${currentTurn === playerRole && piece.player === playerRole && !winner ? 'will-change-transform motion-safe:hover:scale-[1.03] cursor-pointer' : ''}
                         ${piece.player === 'player1' ? 'bg-surface-variant border-2 border-outline-variant' : 'bg-on-background border-2 border-on-secondary-fixed'}
                       `}
                     >
