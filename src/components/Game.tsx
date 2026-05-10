@@ -53,33 +53,33 @@ export default function Game() {
   const isPlayer1 = playerRole === 'player1';
 
   return (
-    <div className="flex-grow container mx-auto px-4 py-8 flex flex-col gap-8">
-      <div className="flex-grow flex flex-col items-center max-w-[600px] mx-auto w-full gap-8">
+    <div className="flex-grow container mx-auto px-3 sm:px-4 py-4 sm:py-8 flex flex-col gap-4 sm:gap-8">
+      <div className="flex-grow flex flex-col items-center max-w-[620px] mx-auto w-full gap-3 sm:gap-6">
         
         {/* Opponent Area (Top) */}
-        <div className={`w-full flex justify-between items-center p-4 rounded-xl border transition-colors ${currentTurn !== playerRole && !winner ? 'bg-surface-container border-primary shadow-sm' : 'bg-surface-container-lowest border-transparent opacity-60'}`}>
-          <div className="flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-full flex justify-center items-center font-bold ${isPlayer1 ? 'bg-on-background border-2 border-on-secondary-fixed text-surface' : 'bg-surface-variant border-2 border-outline-variant text-on-surface'}`}>
+        <div className={`w-full flex justify-between items-center px-3 py-2 sm:px-4 sm:py-3 rounded-xl border transition-colors min-h-[64px] sm:min-h-[76px] ${currentTurn !== playerRole && !winner ? 'bg-surface-container border-primary shadow-sm' : 'bg-surface-container-lowest border-transparent opacity-60'}`}>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex justify-center items-center text-xs sm:text-sm font-bold ${isPlayer1 ? 'bg-on-background border-2 border-on-secondary-fixed text-surface' : 'bg-surface-variant border-2 border-outline-variant text-on-surface'}`}>
               {isPlayer1 ? 'P2' : 'P1'}
             </div>
             <div>
-              <h3 className="font-headline font-bold text-lg text-on-surface">Opponent</h3>
+              <h3 className="font-headline font-bold text-sm sm:text-base text-on-surface">Opponent</h3>
             </div>
           </div>
-          <div className="flex flex-col items-end">
+          <div className="flex flex-col items-end min-h-[24px] justify-center">
             {currentTurn !== playerRole && !winner && (
-               <div className="bg-primary text-on-primary px-4 py-1 rounded-full font-label text-sm font-bold flex items-center gap-2">
-                 <PlayCircle size={18} /> Turn
+               <div className="bg-primary text-on-primary px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full font-label text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                 <PlayCircle size={14} className="sm:w-4 sm:h-4" /> Turn
                </div>
             )}
             {winner && winner !== playerRole && (
-              <div className="text-primary font-bold flex items-center gap-1"><Trophy size={18} /> Winner</div>
-            )}
+              <div className="text-primary font-bold text-xs sm:text-sm flex items-center gap-1"><Trophy size={14} className="sm:w-4 sm:h-4" /> Winner</div>
+             )}
           </div>
         </div>
 
         {/* The Board */}
-        <div className={`w-full aspect-square rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(46,50,48,0.06)] border-[8px] border-primary grid grid-cols-8 grid-rows-8 ${!isPlayer1 ? 'rotate-180' : ''}`}>
+        <div className={`w-full aspect-square rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(46,50,48,0.06)] border-[4px] sm:border-[8px] border-primary grid grid-cols-8 grid-rows-8 ${!isPlayer1 ? 'rotate-180' : ''}`}>
           {board.map((row, rowIndex) => (
             row.map((piece, colIndex) => {
               const isDark = (rowIndex + colIndex) % 2 === 1;
@@ -91,7 +91,7 @@ export default function Game() {
                   key={`${rowIndex}-${colIndex}`}
                   onClick={() => handleSquareClick(rowIndex, colIndex)}
                   className={`
-                    flex items-center justify-center 
+                    flex items-center justify-center
                     ${isDark ? 'bg-tertiary cursor-pointer' : 'bg-surface-container-low'}
                     ${isSelected ? 'brightness-125 ring-2 ring-inset ring-primary-fixed' : ''}
                     ${isValideMove ? 'brightness-125 cursor-pointer relative' : ''}
@@ -108,7 +108,7 @@ export default function Game() {
                     <div 
                       className={`
                         w-[70%] h-[70%] rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,0.3),_0_4px_8px_rgba(0,0,0,0.2)]
-                        relative transition-transform duration-200 z-20 ${currentTurn === playerRole && piece.player === playerRole && !winner ? 'hover:scale-105 cursor-pointer' : ''}
+                        relative transition-transform duration-150 ease-out z-20 ${currentTurn === playerRole && piece.player === playerRole && !winner ? 'motion-safe:hover:scale-[1.03] cursor-pointer' : ''}
                         ${piece.player === 'player1' ? 'bg-surface-variant border-2 border-outline-variant' : 'bg-on-background border-2 border-on-secondary-fixed'}
                       `}
                     >
@@ -127,23 +127,23 @@ export default function Game() {
         </div>
 
         {/* You Area (Bottom) */}
-        <div className={`w-full flex justify-between items-center p-4 rounded-xl border transition-colors ${currentTurn === playerRole && !winner ? 'bg-surface-container border-primary shadow-sm' : 'bg-surface-container-lowest border-transparent opacity-60'}`}>
-          <div className="flex items-center gap-4">
-             <div className={`w-12 h-12 rounded-full flex justify-center items-center font-bold ${isPlayer1 ? 'bg-surface-variant border-2 border-outline-variant text-on-surface' : 'bg-on-background border-2 border-on-secondary-fixed text-surface'}`}>
+        <div className={`w-full flex justify-between items-center px-3 py-2 sm:px-4 sm:py-3 rounded-xl border transition-colors min-h-[64px] sm:min-h-[76px] ${currentTurn === playerRole && !winner ? 'bg-surface-container border-primary shadow-sm' : 'bg-surface-container-lowest border-transparent opacity-60'}`}>
+          <div className="flex items-center gap-2 sm:gap-4">
+             <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex justify-center items-center text-xs sm:text-sm font-bold ${isPlayer1 ? 'bg-surface-variant border-2 border-outline-variant text-on-surface' : 'bg-on-background border-2 border-on-secondary-fixed text-surface'}`}>
               You
             </div>
             <div>
-              <h3 className="font-headline font-bold text-lg text-on-surface">You ({playerRole === 'player1' ? 'P1' : 'P2'})</h3>
+              <h3 className="font-headline font-bold text-sm sm:text-base text-on-surface">You ({playerRole === 'player1' ? 'P1' : 'P2'})</h3>
             </div>
           </div>
-          <div className="flex flex-col items-end">
+          <div className="flex flex-col items-end min-h-[24px] justify-center">
              {currentTurn === playerRole && !winner && (
-                <div className="bg-primary text-on-primary px-4 py-1 rounded-full font-label text-sm font-bold flex items-center gap-2">
-                    <PlayCircle size={18} /> Your Turn
+                <div className="bg-primary text-on-primary px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full font-label text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                    <PlayCircle size={14} className="sm:w-4 sm:h-4" /> Your Turn
                 </div>
              )}
              {winner === playerRole && (
-              <div className="text-primary font-bold flex items-center gap-1"><Trophy size={18} /> Winner</div>
+              <div className="text-primary font-bold text-xs sm:text-sm flex items-center gap-1"><Trophy size={14} className="sm:w-4 sm:h-4" /> Winner</div>
             )}
           </div>
         </div>

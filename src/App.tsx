@@ -16,10 +16,9 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-grow flex flex-col items-center p-6 relative overflow-hidden">
+      <main className="flex-grow flex flex-col items-center p-3 sm:p-6 relative overflow-hidden">
         <Game />
       </main>
     </div>
   );
 }
-
