@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: terra-checkers
+    name: checkers
     env: node
     buildCommand: npm install && npm run build
     startCommand: npm run start
